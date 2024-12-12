@@ -8,8 +8,8 @@ import {
 } from "../controllers/productController.js";
 import { authToken } from "../middleware/authMiddleware.js";
 import validate from "../middleware/validate.js";
-import { userSchemaJoi } from "../validations/userValidation.js";
-import { valid } from "joi";
+import { productSchemaJoi } from "../validations/userValidation.js";
+import { validate } from "joi";
 import { productSchemaJoi } from "../validations/productValidation.js";
 
 const productRoutes = Router();
