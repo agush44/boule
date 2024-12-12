@@ -52,14 +52,15 @@ const addProduct = async (dataProduct) => {
     return newProduct;
   } catch (error) {
     if (error.code === 11000) {
+      const errorMessage = `Duplicate name: A product with the name "${error.keyValue.name}" already exists.`;
       throw {
         status: 409,
-        message: "Duplicate name: A product with this name already exists.",
+        message: errorMessage,
       };
     }
     throw {
       status: 500,
-      message: "Error creating the product",
+      message: "Error creating the product.",
     };
   }
 };
@@ -68,6 +69,7 @@ const updateProduct = async (id, updateData) => {
   try {
     const product = await Product.findById(id);
     if (!product) {
+      console.log(error);
       throw {
         status: 404,
         message: "Product not found.",

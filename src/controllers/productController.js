@@ -50,6 +50,7 @@ const addProduct = async (req, res, next) => {
 
     res.status(201).json(newProduct);
   } catch (error) {
+    // Forward the error to the next middleware (error handler)
     next(error);
   }
 };
