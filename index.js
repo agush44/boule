@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-const swaggerDocument = YAML.load("./swagger.yaml");
+const swaggerDocument = YAML.load("./src/docs/swagger.yaml");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(helmet());

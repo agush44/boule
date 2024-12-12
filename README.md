@@ -21,7 +21,7 @@ Esta API permite gestionar productos y usuarios, incluyendo operaciones CRUD sob
 
 - **Node.js** (v14 o superior).
 - **MongoDB**: Base de datos para almacenar los datos de productos y usuarios.
-  
+
 ## Instalación y Configuración
 
 1. Clona este repositorio:
@@ -30,23 +30,31 @@ Esta API permite gestionar productos y usuarios, incluyendo operaciones CRUD sob
    git clone https://github.com/agush44/boule.git
    cd boule
 
+   ```
+
 2. Instala las dependencias:
 
-    ```bash
-    npm install
+   ```bash
+   npm install
+
+   ```
 
 3. Configura las variables de entorno en un archivo .env:
 
-    ```bash
-    PORT=3000
-    JWT_SECRET=tu_secreto_jwt
-    MONGO_URI=mongodb://localhost:27017/miBaseDeDatos
+   ```bash
+   PORT=3000
+   JWT_SECRET=tu_secreto_jwt
+   MONGO_URI=mongodb://localhost:27017/miBaseDeDatos
+
+   ```
 
 4. Inicia el servidor:
 
-    ```bash
-    npm start
-    
+   ```bash
+   npm start
+
+   ```
+
 El servidor estará disponible en http://localhost:3000.
 
 ## Tecnologías Utilizadas
@@ -59,23 +67,25 @@ El servidor estará disponible en http://localhost:3000.
 - **Swagger**: Documentación interactiva de la API.
 
 ## Arquitectura
+
 El proyecto sigue un modelo MVC (Model-View-Controller) con el uso de middleware para validaciones y autenticación. Las rutas principales están organizadas de la siguiente manera:
 
 - **Rutas de Productos**: Operaciones CRUD para productos.
 - **Rutas de Usuarios**: Registro y autenticación.
-  
+
 ### Estructura de Directorios
 
-- `/config`         - Configuración general (por ejemplo, configuración de la base de datos).
-- `/controllers`    - Lógica de negocio (controladores para manejar las rutas).
-- `/models`         - Modelos de base de datos (definiciones de esquema con Mongoose).
-- `/routes`         - Definición de rutas (productos, usuarios, etc.).
-- `/middleware`     - Middleware (validaciones, autenticación, etc.).
-- `/docs`           - Documentación Swagger de la API.
+- `/config` - Configuración general (por ejemplo, configuración de la base de datos).
+- `/controllers` - Lógica de negocio (controladores para manejar las rutas).
+- `/models` - Modelos de base de datos (definiciones de esquema con Mongoose).
+- `/routes` - Definición de rutas (productos, usuarios, etc.).
+- `/middleware` - Middleware (validaciones, autenticación, etc.).
+- `/docs` - Documentación Swagger de la API.
 
 ## Características de la API
 
 ### Validaciones
+
 Se utilizan esquemas de validación con Joi para garantizar que los datos sean correctos antes de procesarlos.
 
 ### Autenticación JWT
@@ -84,7 +94,7 @@ Se protege rutas sensibles utilizando JWT. Solo los usuarios autenticados pueden
 
 ### Seguridad con Helmet
 
-Helmet se utiliza para establecer cabeceras de seguridad HTTP, ayudando a proteger la aplicación de vulnerabilidades comunes como XSS, clickjacking, y otros ataques.
+Helmet se utiliza para establecer cabeceras de seguridad HTTP, ayudando a proteger la aplicación de vulnerabilidades comunes como XSS, clickjacking y otros ataques.
 
 ### Documentación con Swagger
 
