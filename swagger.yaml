@@ -1,0 +1,222 @@
+openapi: 3.0.0
+info:
+  title: Products and Users API
+  description: API to manage products and users
+  version: 1.0.0
+paths:
+  /api/products:
+    get:
+      summary: Get all products
+      description: Returns a list of all products.
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+                    stock:
+                      type: integer
+        "500":
+          description: Error retrieving products
+    post:
+      summary: Create a new product
+      description: Creates a new product. Requires authentication.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Sample Product"
+                description:
+                  type: string
+                  example: "Product description"
+                price:
+                  type: number
+                  format: float
+                  example: 19.99
+                stock:
+                  type: integer
+                  example: 10
+      responses:
+        "201":
+          description: Product created successfully
+        "400":
+          description: Validation error in input data
+        "401":
+          description: Unauthorized (token required)
+        "500":
+          description: Error creating product
+
+  /api/products/{id}:
+    get:
+      summary: Get a product by ID
+      description: Returns a specific product based on its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+                    format: float
+                  stock:
+                    type: integer
+        "404":
+          description: Product not found
+        "500":
+          description: Error retrieving product
+
+    put:
+      summary: Update a product
+      description: Updates an existing product. Requires authentication.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Updated Product"
+                description:
+                  type: string
+                  example: "Updated product description"
+                price:
+                  type: number
+                  format: float
+                  example: 29.99
+                stock:
+                  type: integer
+                  example: 20
+      responses:
+        "200":
+          description: Product updated successfully
+        "400":
+          description: Product not found or invalid data
+        "401":
+          description: Unauthorized (token required)
+        "500":
+          description: Error updating product
+
+    delete:
+      summary: Delete a product
+      description: Deletes a specific product by ID. Requires authentication.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Product ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product deleted successfully
+        "400":
+          description: Product not found
+        "401":
+          description: Unauthorized (token required)
+        "500":
+          description: Error deleting product
+
+  /api/users/register:
+    post:
+      summary: Register a new user
+      description: Registers a new user in the system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "sampleuser"
+                password:
+                  type: string
+                  example: "password123"
+      responses:
+        "201":
+          description: User registered successfully
+        "400":
+          description: Validation error in input data
+        "409":
+          description: Username already taken
+
+  /api/users/login:
+    post:
+      summary: User login
+      description: Authenticates the user and returns a JWT token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "sampleuser"
+                password:
+                  type: string
+                  example: "password123"
+      responses:
+        "200":
+          description: Login successful, returns JWT token
+        "400":
+          description: Validation error in input data
+        "401":
+          description: Invalid credentials
+
+securitySchemes:
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
