@@ -4,8 +4,8 @@ import {
   loginUserController,
 } from "../controllers/userController.js";
 import {
-  registerUserSchema,
-  loginUserSchema,
+  registerSchemaJoi,
+  loginSchemaJoi,
 } from "../validations/userValidation.js";
 import validate from "../middleware/validate.js";
 
@@ -13,9 +13,9 @@ const userRoutes = Router();
 
 userRoutes.post(
   "/register",
-  validate(registerUserSchema),
+  validate(registerSchemaJoi),
   registerUserController
 );
-userRoutes.post("/login", validate(loginUserSchema), loginUserController);
+userRoutes.post("/login", validate(loginSchemaJoi), loginUserController);
 
 export { userRoutes };
