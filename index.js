@@ -1,4 +1,5 @@
 import express from "express";
+import helmet from "helmet";
 import { connectDB } from "./src/config/mongo.js";
 import { productRoutes } from "./src/routes/productRoutes.js";
 import { userRoutes } from "./src/routes/userRoutes.js";
@@ -14,6 +15,7 @@ const app = express();
 const swaggerDocument = YAML.load("./swagger.yaml");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use(helmet());
 app.use(express.json());
 
 connectDB();
