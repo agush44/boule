@@ -11,10 +11,6 @@ const registerSchemaJoi = Joi.object({
     "string.min": "Password must be at least 6 characters long.",
     "any.required": "Password is required.",
   }),
-  email: Joi.string().email().required().messages({
-    "string.email": "Must be a valid email address.",
-    "any.required": "Email is required.",
-  }),
 });
 
 const loginSchemaJoi = Joi.object({

@@ -1,4 +1,5 @@
 import { registerUser, loginUser } from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 process.loadEnvFile();
 

@@ -16,11 +16,6 @@ productRoutes.get("/", getAllProducts);
 productRoutes.get("/:id", getProductById);
 productRoutes.post("/", validate(productSchemaJoi), authToken, addProduct);
 productRoutes.put("/:id", validate(productSchemaJoi), authToken, updateProduct);
-productRoutes.delete(
-  "/:id",
-  validate(productSchemaJoi),
-  authToken,
-  deleteProduct
-);
+productRoutes.delete("/:id", authToken, deleteProduct);
 
 export { productRoutes };
